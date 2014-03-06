@@ -1,0 +1,10 @@
+applications:
+- services:
+  - mongodb-xcuvc
+  host: headbang
+  disk: 1024M
+  name: headbang
+  path: .
+  domain: ng.bluemix.net
+  mem: 128M
+  instances: 1
