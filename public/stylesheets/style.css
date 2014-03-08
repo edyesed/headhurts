@@ -3,42 +3,74 @@
  */
 
 body {
-	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  min-width: 550px;
 }
 
 h1, h2, h3 {
-	text-align: center;
+  text-align: center;
 }
 
 table {
-	table-layout: fixed;
-	width: 800px;
-	margin: 0 auto;
-	word-wrap: break-word;
-	font-family: Monaco,Menlo,Consolas,"Courier New",monospace;
+  table-layout: fixed;
+  width: 800px;
+  margin: 0 auto;
+  word-wrap: break-word;
+  font-family: Monaco,Menlo,Consolas,"Courier New",monospace;
 }
 
 th {
-	border-bottom: 1px solid #000;
+  border-bottom: 1px solid #000;
 }
 
 th, td {
-	text-align: left;
-	padding: 2px 20px;
+  text-align: left;
+  padding: 2px 20px;
 }
 
 .env-var {
-	text-align: right;
-	border-right: 1px solid #000;
-	width: 30%;
+  text-align: right;
+  border-right: 1px solid #000;
+  width: 30%;
 }
 
 pre {
-	padding: 0;
-	margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 tr:hover td {
-	background-color: #DDF2F9;
+  background-color: #DDF2F9;
 }
 
+
+
+#container {
+  border: none;
+  padding-left: 200px;
+  padding-right: 150px;
+}
+
+#container .column {
+  position: relative;
+  float: left;
+}
+
+#center {
+  width: 100%;
+}
+
+#left {
+  width: 200px;
+  right: 200px;
+  margin-left: -100px;
+}
+
+#right {
+  width: 150px;
+  margin-right: -150px;
+}
+
+#footer {
+  clear: both;
+}

@@ -1,13 +1,17 @@
 class GetConfig
   def initialize
+    require 'mongo'
+    require 'json'
     @env = {}
-  def for_deployment
+  end
+  def for_deployment(*args)
     ENV.each do |key, value|
-    begin
-      hash = JSON.parse(value)
-      @env[key] = hash
-    rescue
-      @env[key] = value
+      begin
+        hash = JSON.parse(value)
+        @env[key] = hash
+      rescue
+        @env[key] = value
+      end
     end
 
     if @env['VCAP_SERVICES'].nil?
@@ -21,3 +25,5 @@ class GetConfig
       @client = Mongo::MongoClient.from_uri(@mgkey,
                   :pool_size => 5, :pool_timeout => 5)
     end
+  end
+end
