@@ -1,24 +1,54 @@
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="/public/stylesheets/style.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+<script src="http://code.jquery.com/jquery-1.7.2.js"></script>
 </head>
-<body>
 
+<body>
 <div id="header">headers</div>
-<div id="container">
-  <div id="center" class="column">
-  <h2>center text</h2>
+<div id="flexbox">
+  <div class="col">
+  <h3>Helpful Hints</h3>
+  <p><a href="#" class="meh" rel="aboutus">About App</a></p>
+  <p><a href="#" class="meh" rel="api">Using the API</a></p>
   </div>
-  <div id="left" class="column">
-  <h3>left text</h3>
+  <div class="col">
+    <h3>Explanation</h3>
+    <div class="aboutus" style="display: none">
+    <p>This application saves events, and makes some attempt to correlate them over time.</p>
+    <p>Log in with your github id <a href="/auth2">here</a>, and then start submitting events</p>
+    <p>Once you've <a href="/submit">submitted</a> some stuff, you can <a href="/dump">dump data</a> via the API or <a href="/viz">visualize</a></p>
+    </div>
+    <div class="api" style="display: none">
+    <p>So you wish to use api?</p>
+    <p>First, you need a <a href="https://github.com/settings/applications">GitHub token </a>.</p>
+    <p>Then, add whatever personal access token you've generated to your request as <b>X-Auth-Token</b></p>
+    <p>POST data in via <a href="/events/example">/events/&lt;sometype&gt;</a>. Give us a json document.  </p>
+    <p>GET data out via <a href="/events">/events</a>.  </p>
+    <p>You can also <a href="/viz">visualize</a> data</p>
+    </div>
   </div>
-  <div id="right" class="column">
+  <div class="col">
   <h3>right text</h3>
+    <div class="api" style="display: none">
+      <p><em>POST /events/$sometype</em><br/>Submit events of a type</p>
+      <hr/>
+      <p><em>GET /events</em><br/>Get All events</p>
+      <hr/>
+      <p><em>GET /events/$sometype</em><br/>Get All events of $sometype</p>
+      <hr/>
+    </div>
   </div>
 </div>
 <div id="footer">
 footers
 </div>
 
+<script>
+  $('a.meh').on('click', function(){
+    var target = $(this).attr('rel');
+    $("."+target).show().siblings("div").hide();
+  });
+</script>
 </body>
 </html>
