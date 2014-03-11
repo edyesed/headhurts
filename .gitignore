@@ -1,0 +1,2 @@
+#Don't save teh clients secret files
+*secret*json
