@@ -101,3 +101,12 @@ get '/callist' do
   erb :cals , :locals => { :cals => result.data.items }
   #[result.status, {'Content-Type' => 'application/json'}, result.data.items.to_json]
 end
+
+post '/callist' do
+   if params[:chosencal]
+      [200, {'Content-Type' => 'application.json'}, params[:chosencal].to_json]
+   else
+      mes = {"message" => "client failed to send a calendar. client do again"}
+      [400, {'Content-Type' => 'application.json'}, mes.to_json]
+   end
+end

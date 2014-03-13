@@ -1,0 +1,16 @@
+<div class="cals">
+<form action="/callist" method="POST" id="calchoice">
+  <p>
+  <% cals.each do |d| %>
+  <%   if d['accessRole'] == "writer" or d['accessRole'] == "owner" %>
+    <div class="calendar" id="<%= d.id %>" style="background-color:<%= d.backgroundColor %>">
+    <input type="radio" name="chosencal" value="<%=d.id %>">
+    <%= d.summary %>
+    </input>
+    </div>
+  <%   end %>
+  <% end  %>
+  </p>
+<input type="submit" Value="Choose Calendar"/>
+</form>
+</div>
