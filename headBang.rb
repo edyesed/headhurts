@@ -39,19 +39,20 @@ configure do
     :application_name => 'Ruby Calendar sample',
     :application_version => '1.0.0')
  
-  if ENV['VCAP_SERVICES'].nil?
-    @mgurl = 'mongodb://localhost/goog_test_db'
-  else
-    @services = JSON.parse(ENV['VCAP_SERVICES'])
-    @mgurl = @services["mongodb-2.2"][0]['credentials']['url']
-  end
-  @db = @mgurl[%r{/([^/\?]+)(\?|$)}, 1]
-  @client = Mongo::MongoClient.from_uri(@mgurl,
-                :pool_size => 5, :pool_timeout => 5)
+  ##if ENV['VCAP_SERVICES'].nil?
+  ##  @mgurl = 'mongodb://localhost/goog_test_db'
+  ##else
+  ##  @services = JSON.parse(ENV['VCAP_SERVICES'])
+  ##  @mgurl = @services["mongodb-2.2"][0]['credentials']['url']
+  ##end
+  ##@db = @mgurl[%r{/([^/\?]+)(\?|$)}, 1]
+  ##@client = Mongo::MongoClient.from_uri(@mgurl,
+  ##              :pool_size => 5, :pool_timeout => 5)
   
+  client_secrets = Google::APIClient::ClientSecrets.load
   if client.authorization.nil?
-    client_authorization = client_secrets.to_authorization
-    client_authorization.scope = 'https://www.googleapis.com/auth/calendar'
+    client.authorization = client_secrets.to_authorization
+    client.authorization.scope = 'https://www.googleapis.com/auth/calendar'
   end
     
   #file_storage = Google::APIClient::FileStorage.new(CREDENTIAL_STORE_FILE)
@@ -88,6 +89,7 @@ after do
   session[:expires_in] = user_credentials.expires_in
   session[:issued_at] = user_credentials.issued_at
 
+  #client.authorization = client_secrets.to_authorization
   #client.authorization = cred_storage.authorization
   #file_storage = Google::APIClient::FileStorage.new(CREDENTIAL_STORE_FILE)
   #file_storage.write_credentials(user_credentials)
